@@ -1,35 +1,23 @@
-package com.fitness.userservice.models;
+package com.fitness.userservice.dto;
 
-import jakarta.persistence.*;
+import com.fitness.userservice.models.UserRole;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "users")
 @Data
-public class User {
+public class UserResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
-    @Column(unique = true)
     private String email;
-
-    @Column(nullable = false)
     private String password;
     private String firstName;
     private String lastName;
-
-    @Enumerated(EnumType.STRING)
-    private UserRole role = UserRole.USER;
-
-    @CreationTimestamp
     private LocalDateTime createdAt;
-
-    @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
